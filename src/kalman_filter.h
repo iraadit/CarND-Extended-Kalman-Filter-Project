@@ -23,6 +23,9 @@ public:
   // measurement covariance matrix
   Eigen::MatrixXd R_;
 
+  // identity matrix
+  Eigen::MatrixXd I_;
+
   /**
    * Constructor
    */
@@ -64,6 +67,18 @@ public:
    */
   void UpdateEKF(const Eigen::VectorXd &z);
 
+  /**
+   * Common part for the Update of Kalman Filter and of the Extended Kalman Filter
+   * @param y The error at k+1
+   */
+   void KF(const Eigen::VectorXd &y);
+
+   /**
+   * Convert from cartesian to polar coordinates for the radar
+   * @param
+   * @return polar coordinates prediction
+   */
+   Eigen::VectorXd ConvertCartesianToPolar();
 };
 
 #endif /* KALMAN_FILTER_H_ */
